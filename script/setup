@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Creating .env file"
+
+if [ ! -f .env ]; then
+  touch .env
+  keys=$(cat .env.example)
+
+  for key in $keys; do
+    prompt_value=${key%=}
+    echo "Enter a value for $prompt_value"
+    read -r value
+    echo "$key$value" >> .env
+  done
+fi
+
+script/bootstrap
