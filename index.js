@@ -1,2 +1,2 @@
-const RotaAlerts = require('./lib/rota_alerts')
-RotaAlerts.runner()
+const RotaAlerts = require("./lib/rota_alerts");
+RotaAlerts.runner();
