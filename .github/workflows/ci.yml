@@ -7,7 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Read .node-version
+        id: node_version
+        run: echo ::set-output name=NODE_VERSION::$(cat .node-version)
       - name: Use Node.js
         uses: actions/setup-node@v1
+        with:
+          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
       - name: Run tests
         run: script/test
