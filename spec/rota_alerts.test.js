@@ -5,7 +5,7 @@ const SlackMessage = require("../lib/slack_message");
 jest.mock("../lib/upcoming_rotation");
 jest.mock("../lib/slack_message");
 
-describe("index.js", () => {
+describe("RotaAlerts", () => {
   beforeEach(() => {
     UpcomingRotation.mockClear();
     SlackMessage.mockClear();
