@@ -46,7 +46,7 @@ describe("UpcomingRotations", () => {
   test("returns a rotation when one is available", async () => {
     MockDate.set("2020-01-02");
 
-    const upcomingRotation = new UpcomingRotation();
+    const upcomingRotation = new UpcomingRotation("ooh");
 
     expect(await upcomingRotation.find()).toEqual({
       start_date: "2020-01-09",
@@ -65,8 +65,14 @@ describe("UpcomingRotations", () => {
   test("returns nothing when there is no rotation", async () => {
     MockDate.set("2020-01-03");
 
-    const upcomingRotation = new UpcomingRotation();
+    const upcomingRotation = new UpcomingRotation("ooh");
 
     expect(await upcomingRotation.find()).toEqual(undefined);
+  });
+
+  test("raises an error if the rotation type does not exist", () => {
+    expect(() => {
+      new UpcomingRotation("foo");
+    }).toThrow("Rotation type foo does not exist");
   });
 });

@@ -1,7 +1,7 @@
 # Rota Alerts
 
 Sends a Slack Notification to team members before they are due to start an out
-of hours rotation.
+of hours or in-hours support rotation.
 
 ## Prerequisites
 

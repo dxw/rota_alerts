@@ -7,3 +7,5 @@ package-lock.json
 .node-version
 .prettierignore
 script/*
+.DS_Store
+LICENSE

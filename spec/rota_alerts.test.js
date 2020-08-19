@@ -31,7 +31,7 @@ describe("RotaAlerts", () => {
       };
     });
 
-    const rotaAlerts = new RotaAlerts();
+    const rotaAlerts = new RotaAlerts("ooh");
     await rotaAlerts.run();
 
     expect(SlackMessage).toHaveBeenCalledTimes(2);
@@ -54,7 +54,7 @@ describe("RotaAlerts", () => {
       };
     });
 
-    const rotaAlerts = new RotaAlerts();
+    const rotaAlerts = new RotaAlerts("ooh");
     await rotaAlerts.run();
 
     expect(SlackMessage).toHaveBeenCalledTimes(0);
