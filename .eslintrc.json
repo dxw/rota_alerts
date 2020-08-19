@@ -1,0 +1,6 @@
+{
+  "extends": ["@wearedxw/eslint-config"],
+  "env": {
+    "node": true
+  }
+}
