@@ -37,11 +37,11 @@ describe("RotaAlerts", () => {
     expect(SlackMessage).toHaveBeenCalledTimes(2);
     expect(SlackMessage).toHaveBeenCalledWith(
       "eve@example.com",
-      "You have an upcoming out of hours allocation on Thursday 9th January"
+      "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
     );
     expect(SlackMessage).toHaveBeenCalledWith(
       "trent@example.com",
-      "You have an upcoming out of hours allocation on Thursday 9th January"
+      "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
     );
   });
 
