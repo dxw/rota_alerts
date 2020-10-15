@@ -1,17 +1,20 @@
 const RotaAlerts = require("../lib/rota_alerts");
 const UpcomingRotation = require("../lib/upcoming_rotation");
 const SlackMessage = require("../lib/slack_message");
+const EmailMessage = require("../lib/email_message");
 
 jest.mock("../lib/upcoming_rotation");
 jest.mock("../lib/slack_message");
+jest.mock("../lib/email_message");
 
 describe("RotaAlerts", () => {
   beforeEach(() => {
     UpcomingRotation.mockClear();
     SlackMessage.mockClear();
+    EmailMessage.mockClear();
   });
 
-  test("sends Slack notifications when a rotation is available", async () => {
+  test("sends notifications when a rotation is available", async () => {
     UpcomingRotation.mockImplementationOnce(() => {
       return {
         find: () => {
@@ -35,11 +38,20 @@ describe("RotaAlerts", () => {
     await rotaAlerts.run();
 
     expect(SlackMessage).toHaveBeenCalledTimes(2);
+    expect(EmailMessage).toHaveBeenCalledTimes(2);
     expect(SlackMessage).toHaveBeenCalledWith(
       "eve@example.com",
       "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
     );
     expect(SlackMessage).toHaveBeenCalledWith(
+      "trent@example.com",
+      "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
+    );
+    expect(EmailMessage).toHaveBeenCalledWith(
+      "eve@example.com",
+      "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
+    );
+    expect(EmailMessage).toHaveBeenCalledWith(
       "trent@example.com",
       "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
     );
@@ -58,5 +70,6 @@ describe("RotaAlerts", () => {
     await rotaAlerts.run();
 
     expect(SlackMessage).toHaveBeenCalledTimes(0);
+    expect(EmailMessage).toHaveBeenCalledTimes(0);
   });
 });
