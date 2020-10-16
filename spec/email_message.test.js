@@ -10,7 +10,7 @@ describe("EmailMessage", () => {
 
     expect(sgMail.send).toHaveBeenCalledWith({
       to: "foo@example.com",
-      from: "stuart@dxw.com",
+      from: "noreply@dxw.com",
       subject: "Your upcoming rotation",
       text: "Details of your upcoming rotation",
     });
