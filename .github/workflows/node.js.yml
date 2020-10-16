@@ -1,0 +1,26 @@
+name: Run application
+
+on:
+  schedule:
+    - cron: "0 10 * * 3"
+
+env:
+  SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+  SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Read .node-version
+        id: node_version
+        run: echo ::set-output name=NODE_VERSION::$(cat .node-version)
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
+      - name: Prepare
+        run: npm install
+      - name: Run application
+        run: node index.js
