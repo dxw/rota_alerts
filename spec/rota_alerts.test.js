@@ -14,7 +14,7 @@ describe("RotaAlerts", () => {
     EmailMessage.mockClear();
   });
 
-  test("sends notifications when a rotation is available", async () => {
+  test("sends notifications when a out of hours rotation is available", async () => {
     UpcomingRotation.mockImplementationOnce(() => {
       return {
         find: () => {
@@ -41,19 +41,27 @@ describe("RotaAlerts", () => {
     expect(EmailMessage).toHaveBeenCalledTimes(2);
     expect(SlackMessage).toHaveBeenCalledWith(
       "eve@example.com",
-      "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
+      "You have an upcoming **out of hours** allocation on Thursday 9th January. " +
+      "Your role is **first line**." +
+      "Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
     );
     expect(SlackMessage).toHaveBeenCalledWith(
       "trent@example.com",
-      "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
+      "You have an upcoming **out of hours** allocation on Thursday 9th January. " +
+      "Your role is **second line**." +
+      "Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
     );
     expect(EmailMessage).toHaveBeenCalledWith(
       "eve@example.com",
-      "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
+      "You have an upcoming **out of hours** allocation on Thursday 9th January. " +
+      "Your role is **first line**." +
+      "Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
     );
     expect(EmailMessage).toHaveBeenCalledWith(
       "trent@example.com",
-      "You have an upcoming out of hours allocation on Thursday 9th January. Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
+      "You have an upcoming **out of hours** allocation on Thursday 9th January. " +
+      "Your role is **second line**." +
+      "Can't do it? Ask in #dxw-tech-team and see if someone wants to swap"
     );
   });
 
