@@ -23,7 +23,7 @@
     "@typescript-eslint/eslint-plugin": "^3.9.1",
     "@wearedxw/eslint-config": "^2.0.0",
     "dotenv": "^8.2.0",
-    "eslint": "^7.7.0",
+    "eslint": "^7.16.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
