@@ -15,7 +15,7 @@ jobs:
         id: node_version
         run: echo ::set-output name=NODE_VERSION::$(cat .node-version)
       - name: Use Node.js
-        uses: actions/setup-node@v2.1.4
+        uses: actions/setup-node@v2.2.0
         with:
           node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
       - name: Prepare
